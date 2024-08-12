@@ -669,3 +669,44 @@ footer p {
   width: 500px;
   height: 450px;
 }
+.plot-link {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.plot-link:hover {
+  background-color: #0056b3;
+}
+
+#plot-container {
+  margin-top: 20px;
+}
+
+#bar-chart-container,
+#volcano-image-container {
+  width: 100%;
+  height: 400px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+#bar-chart,
+#volcano-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.plot-title {
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
