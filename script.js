@@ -3512,25 +3512,25 @@ function parse_single_non_hive_file_data(data, thefilename) {
   // called by: parse_single_file_data(...)
 
 
-  //  console.log("parse_multiple_files() event=",evt);
-  //  var data = evt.target.result;
+  console.log("parse_multiple_files() event=",evt);
+   var data = evt.target.result;
 
   // Get the columns names from the filename:
-  //var match = filename_regex.exec(thefilename); // whereas filename_regex.test(..) just returns true/false
+  var match = filename_regex.exec(thefilename); // whereas filename_regex.test(..) just returns true/false
 
-  // if (match === null && !confirm("This file '"+filename+"' doesn't end with .csv, .tsv or .txt.\nAre you sure you have selected the correct file?\nFilename: '"+filename+"'\n(Press 'Yes' to continue, or 'No' to select another file.)") ) return false;
+   if (match === null && !confirm("This file '"+filename+"' doesn't end with .csv, .tsv or .txt.\nAre you sure you have selected the correct file?\nFilename: '"+filename+"'\n(Press 'Yes' to continue, or 'No' to select another file.)") ) return false;
 
-  //var thefilename_without_extn = (match === null) ? thefilename : match[1];
+  var thefilename_without_extn = (match === null) ? thefilename : match[1];
 
-  // var filename_parts = thefilename_without_extn.split('-'); // using a limit of 2 would ignore any third part.
+  var filename_parts = thefilename_without_extn.split('-'); // using a limit of 2 would ignore any third part.
 
-  //var head1_name = filename_parts[0],
-  //    head2_name = filename_parts.length >1 ? filename_parts.slice(1).join('-') : ""; // empty for now. BUT can be the part after - as "Items after the limit are excluded."
+  var head1_name = filename_parts[0],
+    head2_name = filename_parts.length >1 ? filename_parts.slice(1).join('-') : ""; // empty for now. BUT can be the part after - as "Items after the limit are excluded."
 
 
-  //alert("Skipping parse_single_non_hive_file_data()");
-  //enable_sjb_tab(2, 10, true); // the 'Select ids/species/columns' tab
-  //return;
+  alert("Skipping parse_single_non_hive_file_data()");
+  enable_sjb_tab(2, 10, true); // the 'Select ids/species/columns' tab
+  return;
 
 
   filenames_array.push(thefilename);
@@ -3543,24 +3543,25 @@ function parse_single_non_hive_file_data(data, thefilename) {
   //   "MT-ND1",1.84459695034627e-171,0.478291215931857,0.986,0.931,4.34679271349099e-167
 
 
-  // if (!valid_file_content(data)) return false;
+   if (!valid_file_content(data)) return false;
 
-  /*
+  
   var lines = data.split(/\r\n|\n/); // windows or linux newlines.
-  if (lines.length == 0) {show_loading_message("The file doesn't contain any lines of data.",'red'); return false;}
+   (lines.length == 0);
+    {show_loading_message("The file doesn't contain any lines of data.",'red'); return false;}
   if (lines.length == 1) {show_loading_message("The file contains only one line of data, perhaps the lines need to be separated with new-line characters?",'red'); return false;}
-  */
+  
 
-  // var delim, delim_name;
+   var delim, delim_name;
 
-  // var delim = '\t'; // Just use tab or comma for now.
-  // alert(data.substr(0,500));
+  var delim = '\t'; // Just use tab or comma for now.
+  alert(data.substr(0,500));
 
   var delim_info = get_data_deliminator(data.substr(0, 500));
   var delim = delim_info[0], delim_name = delim_info[1];
-  // alert("delim is: "+delim+" "+delim_name+ " for file: "+thefilename);
+  alert("delim is: "+delim+" "+delim_name+ " for file: "+thefilename);
 
-  //var arr = csvToArray(data, delim);
+  var arr = csvToArray(data, delim);
   var arr = csv2arr(data, delim); // returns A single empty row if no data: [["",],]
   if (arr.length === 0 || (arr.length === 1 && arr[0].length < 2)) { show_reading_and_loading_messages("ERROR: parse_single_non_hive_file_data(): File is empty: " + thefilename, 'red'); return false; }
 
@@ -3596,9 +3597,9 @@ function parse_single_non_hive_file_data(data, thefilename) {
   // initialise_data_still_to_parse(); // clear file_data_arrays, etc to [] - is already called in read_files() or read_from_url()
 
   add_to_file_data_still_to_parse(arr, headings);
-  // Store the file data and column names to parse later after user tells us which columns to use: 
-  // file_data_arrays.push(arr);
-  // file_heading_arrays.push(headings);
+ 
+  file_data_arrays.push(arr);
+   file_heading_arrays.push(headings);
 
 
   // April 2023: Not needed here now:
@@ -3616,7 +3617,7 @@ function parse_single_non_hive_file_data(data, thefilename) {
   show_data_still_to_parse_headings_to_user_for_non_hive_single_file(thefilename, headings);
 
   enable_sjb_tab(2, 2, true); // the 'Select ids/species/columns' tab
-  // enable_sjb_tab(3, 3, false); // the 'Display options' tab. - for non-HIVE files, not showing Display options until after user sets column names & types and heatmap.  
+   enable_sjb_tab(3, 3, false); // the 'Display options' tab. - for non-HIVE files, not showing Display options until after user sets column names & types and heatmap.  
   enable_sjb_tab(3, 10, false); // To disable the rest of the tabs, as may be opening another set of files after previously loading files.
 
   show_read_input_data_message('<br>&nbsp;<br>File read successfully.<br>&nbsp;<br>Now <b>click the \'<span style="color: white; background-color:red;">(2) Select ids/species/columns</span>\' tab</b> above.', 'green', true);
