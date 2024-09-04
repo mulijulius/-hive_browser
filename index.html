@@ -7,6 +7,8 @@
     <meta name="robots" content="noindex, nofollow">
     <title>HIVE : Heatmap for Interactive Viewing of Expression data</title>
     <!-- link rel="shortcut icon" href="favicon.ico" /-->
+    <meta http-equiv="Content-Security-Policy" content="default-src *; font-src 'self' data: https://string-db.org http://string-db.org; script-src 'self' https://string-db.org http://string-db.org https://gc.zgo.at http://gc.zgo.at https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; style-src 'self' data: http://* https://* 'unsafe-inline'; img-src 'self' http https data: *; media-src 'self' *; ">
+
 
     <!-- From: https://base64.guru/converter/encode/image/ico BUT not working on my Safari browser -->
     <link rel="icon" type="image/x-icon" sizes="16x16"
@@ -20,10 +22,15 @@
 
     <!-- meta http-equiv="Content-Security-Policy" content="default-src *; font-src 'self' data: https://string-db.org; script-src 'self' https://string-db.org; style-src 'self' data: http://* https://* 'unsafe-inline'; img-src 'self' http https data: *;  media-src 'self' *; " -->
     <script src="./script.js"></script>
+    <script src="./chart.js"></script>
+    
+
     <link rel="stylesheet" href="styles.css">
 
     <script type="text/javascript" src="https://string-db.org/javascript/combined_embedded_network_v2.0.4.js"></script>
-    <script src="https://d3js.org/d3.v6.min.js"></script>
+   
+   
+
 
     <!-- TODO: Ask stringdb to add ajax test:  "try {}" based on: https://www.codeproject.com/Articles/20114/Test-Internet-Connection-using-AJAX -->
 
@@ -337,12 +344,9 @@
 
                 </table>
                 <!-- CHART AND FEEDBACK FORM -->
-                <section id="chart">
-                   
-                    <canvas id="myChart" width="400" height="400" style="display: none;"></canvas>
-                   
+                <section id="main">
+                    <a href="volcano-plots.html" class="button">View Plot</a>
                 </section>
-
                 <section id="feedback">
                     <h2>Feedback Form</h2>
                     <form action="submit_feedback.php" method="post">
