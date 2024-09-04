@@ -231,7 +231,7 @@ th, td {
 }
 
 th {
-  background-color: #f808d0;
+  background-color: hsl(177, 95%, 49%);
   border: 1px solid #0b7fec;
 }
 
@@ -709,4 +709,99 @@ footer p {
   text-decoration: underline;
   margin-bottom: 10px;
   font-size: 1.5em;
+}
+#main {
+  text-align: center;
+  margin-top: 50px;
+}
+
+/* Anchor tag styled as a button */
+a.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+a.button:hover {
+  background-color: #0056b3;
+}
+
+#plot-section {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.plot-container {
+  text-align: center;
+}
+
+.plot-container h2 {
+  margin-bottom: 10px;
+}
+
+.centered-header {
+  text-align: center;
+  padding: 20px;
+  background-color: #0099cc;
+  color: white;
+}
+
+.header-title {
+  font-size: 24px;
+  margin: 0;
+}
+
+#plot-section {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.plot-container {
+  text-align: center;
+}
+
+.plot-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.plot-container p {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#upload-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.upload-container {
+  display: inline-block;
+}
+
+.upload-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.upload-button {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  background-color: #f0f0f0;
 }
