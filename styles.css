@@ -514,10 +514,10 @@ footer p {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #0b0355;
+  background-color: #0af1e6;
   margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #11f709;
+  border: 1px solid #eef1ee;
   width: 80%; /* Could be more or less, depending on screen size */
   max-width: 800px;
   border-radius: 10px;
@@ -576,7 +576,7 @@ footer p {
 }
 
 .modal-content strong {
-  color: #0099cc;
+  color: hsl(123, 100%, 40%);
 }
 
 .modal-content img {
