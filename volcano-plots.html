@@ -5,6 +5,12 @@
     <meta name="robots" content="noindex, nofollow">
     <title>Volcano Plots</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Include the Chart.js Library from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Include the volcano plot JavaScript -->
+    <script src="volcano-plot.js" defer></script>
 </head>
 <body>
     <!-- Header Section -->
@@ -23,11 +29,18 @@
             <p>Volcano Plot 2</p>
         </div>
     </section>
+
+    <!-- Upload Button Section -->
     <section id="upload-section">
         <div class="upload-container">
             <label for="file-upload" class="upload-label">Upload External Data</label>
-            <input type="file" id="file-upload" name="file-upload" class="upload-button">
+            <input type="file" id="file-upload" name="file-upload" class="upload-button" accept=".csv, .tsv, .txt">
         </div>
+    </section>
+
+    <!-- Dynamic Plot Section -->
+    <section id="dynamic-plot-section">
+        <canvas id="dynamic-volcano-plot" width="400" height="400"></canvas>
     </section>
 </body>
 </html>
