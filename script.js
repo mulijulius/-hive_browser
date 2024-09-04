@@ -1,3 +1,6 @@
+
+
+//this iw where my code begins
 'use strict'; // ES5+ to report undeclared variables.
 
 
@@ -6691,68 +6694,43 @@ if (chartData.datasets[0].data.length > 0) {
     }
   })}
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.tool-button');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const url = button.getAttribute('data-url');
-            if (url) {
-                window.open(url, '_blank');
-            }
-        });
+  document.addEventListener("DOMContentLoaded", function() {
+    // Example data for log fold changes and p-values
+    console.log("JavaScript loaded"); // Debugging line
+
+    const logFoldChanges = [1.2, -0.5, 0.8, -1.1, 1.5, -0.9, 2.3]; // Replace with actual data
+    const pValues = [0.01, 0.05, 0.001, 0.03, 0.1, 0.02, 0.005]; // Replace with actual data
+    console.log("Data loaded", logFoldChanges, pValues); // Debugging line
+
+    // Convert p-values to -log10(p-values)
+    const negLogPValues = pValues.map(p => -Math.log10(p));
+    console.log("Chart object:", Chart); // Debugging line
+
+    // Configure the data for Chart.js
+    const data = {
+        datasets: [{
+            label: 'Volcano Plot',
+            data: logFoldChanges.map((fc, i) => ({ x: fc, y: negLogPValues[i] })),
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+            pointRadius: 5,
+        }]
+    };
+
+    // Configure the chart options
+    const options = {
+        scales: {
+            x: { title: { display: true, text: 'Log2 Fold Change' } },
+            y: { title: { display: true, text: '-Log10(p-value)' } }
+        }
+    };
+
+    // Get the canvas context and create the chart
+    const ctx = document.getElementById('volcanoPlot').getContext('2d');
+    new Chart(ctx, {
+        type: 'scatter',
+        data: data,
+        options: options
     });
-
-    // Data for the Volcano plot (example data)
-    const data = [
-        { x: -2.2, y: 3 }, { x: -1.5, y: 2 }, { x: -0.5, y: 1 },
-        { x: 0, y: 0.5 }, { x: 0.5, y: 1 }, { x: 1.5, y: 2 }, { x: 2.2, y: 3 }
-    ];
-
-    const width = 800;
-    const height = 500;
-    const margin = { top: 20, right: 30, bottom: 40, left: 50 };
-
-    const svg = d3.select('#volcano-plot')
-        .append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .append('g')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
-
-    const x = d3.scaleLinear()
-        .domain([-3, 3])
-        .range([0, width]);
-
-    const y = d3.scaleLinear()
-        .domain([0, 4])
-        .range([height, 0]);
-
-    svg.append('g')
-        .attr('transform', `translate(0,${height})`)
-        .call(d3.axisBottom(x));
-
-    svg.append('g')
-        .call(d3.axisLeft(y));
-
-    svg.append('text')
-        .attr('text-anchor', 'end')
-        .attr('x', width / 2 + margin.left)
-        .attr('y', height + margin.top + 20)
-        .text('log2(fold change)');
-
-    svg.append('text')
-        .attr('text-anchor', 'end')
-        .attr('transform', 'rotate(-90)')
-        .attr('y', -margin.left + 20)
-        .attr('x', -margin.top - height / 2 + 20)
-        .text('-log10(p-value)');
-
-    svg.selectAll('circle')
-        .data(data)
-        .enter()
-        .append('circle')
-        .attr('cx', d => x(d.x))
-        .attr('cy', d => y(d.y))
-        .attr('r', 5)
-        .style('fill', 'blue');
 });
